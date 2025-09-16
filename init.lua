@@ -1,6 +1,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
+vim.opt.clipboard = "unnamedplus"
 
 local map = vim.keymap.set
 
@@ -16,3 +17,5 @@ map("n", "<C-h>", "<C-w>h")
 map("n", "<C-l>", "<C-w>l")
 map("n", "<A-]>", "<cmd>tabnext<CR>")
 map("n", "<A-[>", "<cmd>tabprev<CR>")
+
+require("core")
