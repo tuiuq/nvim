@@ -13,3 +13,15 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
+
+vim.g.clipboard = {
+  name = "xclip-clean",
+  copy = {
+    ["+"] = { "xclip-clean", "-selection", "clipboard" },
+    ["*"] = { "xclip-clean", "-selection", "primary" },
+  },
+  paste = {
+    ["+"] = { "xclip-clean", "-selection", "clipboard", "-o" },
+    ["*"] = { "xclip-clean", "-selection", "primary", "-o" },
+  }
+}
