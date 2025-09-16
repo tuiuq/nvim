@@ -12,3 +12,7 @@ map("n", "<C-h>", "<C-w>h")
 map("n", "<C-l>", "<C-w>l")
 map("n", "<A-]>", "<cmd>tabnext<CR>")
 map("n", "<A-[>", "<cmd>tabprev<CR>")
+
+-- Plugins
+-- NeoTree
+map("n", "<A-1>", "<cmd>Neotree toggle<CR>")
