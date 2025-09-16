@@ -10,9 +10,10 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-l>", "<C-w>l")
-map("n", "<A-]>", "<cmd>tabnext<CR>")
-map("n", "<A-[>", "<cmd>tabprev<CR>")
 
 -- Plugins
 -- NeoTree
 map("n", "<A-1>", "<cmd>Neotree toggle<CR>")
+-- Buffer Line
+map("n", "<A-]>", "<cmd>BufferLineCycleNext<CR>")
+map("n", "<A-[>", "<cmd>BufferLineCyclePrev<CR>")
