@@ -1,74 +1,33 @@
--- -- =========================
--- -- LSP 配置入口
--- -- 基于 Neovim 原生 LSP API 
--- -- =========================
--- local mason = require("mason")
--- local mason_lspconfig = require("mason-lspconfig")
---
--- local servers = {
---   lua_ls = require("lsp.servers.lua_ls")
--- }
---
--- -- =========================
--- -- mason.nvim 初始化
--- -- =========================
--- mason.setup()
---
--- -- =========================
--- -- mason-lspconfig.nvim 初始化
--- -- =========================
--- mason_lspconfig.setup({
---   ensure_installed = vim.tbl_keys(servers),
--- })
---
--- -- =========================
--- -- 统一的能力 (capabilities)
--- -- =========================
--- local capabilities = require("cmp_nvim_lsp").default_capabilities(
---   vim.lsp.protocol.make_client_capabilities()
--- )
---
--- -- =========================
--- -- 通用的 on_attach
--- -- =========================
--- local on_attach = function (client, bufnr)
---   require("lsp.keymaps").setup(client, bufnr)
---   require("lspconfig.ui.windows").default_options = {
---     border = "rounded"
---   }
--- end
---
--- -- =========================
--- -- 注册到所有server源
--- -- =========================
--- vim.api.nvim_create_autocmd("LspAttach", {
---   callback = function (args)
---     local client = vim.lsp.get_client_by_id(args.data.client_id)
---     if client then
---       on_attach(client, args.buf)
---     end
---   end
--- })
---
--- -- =========================
--- -- LSP server 配置
--- -- =========================
--- for name, opts in pairs(servers) do
---   opts.capabilities = capabilities
---   vim.lsp.config(name, opts)
--- end
---
-
 local M = {}
 local mason = pRequire("mason")
 local mason_lspconfig = pRequire("mason-lspconfig")
 
-local servers = {
-  lua_ls = require("lsp.servers.lua_ls")
-}
-local available = vim.tbl_keys(servers or {});
+local function load_servers()
+  local servers = {}
+  local servers_path = vim.fn.stdpath("config") .. "/lua/lsp/servers"
+  local scan = vim.loop.fs_scandir(servers_path)
+
+  if not scan then
+    return servers
+  end
+
+  while true do
+    local name, t = vim.loop.fs_scandir_next(scan)
+    if not name then break end
+
+    if t == "file" and name:match("%.lua$") then
+      local server = name:gsub("%.lua$", "")
+      servers[server] = require("lsp.servers." .. server)
+    end
+  end
+
+  return servers
+end
+
 
 M.setup = function ()
+  local servers = load_servers()
+  local available = vim.tbl_keys(servers or {});
   -- Mason
   if mason then
     mason.setup()
