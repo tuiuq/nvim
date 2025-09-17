@@ -1,6 +1,10 @@
+-- signColumn
+vim.opt.signcolumn = "yes"
+
 -- Number
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.numberwidth = 4
 
 -- Colors
 vim.opt.termguicolors = true
