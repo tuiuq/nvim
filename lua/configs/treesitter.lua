@@ -55,7 +55,7 @@ require("nvim-treesitter.configs").setup({
   },
 
   -- 5. 自动配对/关闭标签（HTML/JSX/TSX）
-  autotag = { enable = true },
+  -- autotag = { enable = true },
 
   -- 6. 内置重构模块
   refactor = {
