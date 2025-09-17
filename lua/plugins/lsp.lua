@@ -57,4 +57,8 @@ return {
       require("lsp.none_ls")
     end
   },
+
+  {
+    "b0o/schemastore.nvim"
+  }
 }
