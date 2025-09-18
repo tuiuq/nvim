@@ -10,6 +10,9 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-l>", "<C-w>l")
+map("n", "<ESC><ESC>", "<cmd>noh<CR>")
+map("t", "<ESC><ESC>", [[<C-\><C-n>]])
+map({ "n", "t" }, "<A-`>", "<cmd>ToggleTerm<CR>")
 
 -- Plugins
 -- NeoTree
