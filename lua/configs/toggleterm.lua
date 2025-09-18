@@ -1,5 +1,5 @@
 return {
-  size = 20 | function (term)
+  size = 20 or function (term)
     if term.direction == "horizontal" then
       return 15
     elseif term.direction == "vertical" then
