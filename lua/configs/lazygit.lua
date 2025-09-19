@@ -9,7 +9,7 @@ function _G.lazygit_toggle(...)
       cmd = ("lg %s"):format(args),
       direction = "float",
       float_opts = {
-        border = "double"
+        border = "curved"
       },
       on_close = function ()
         lazygit_term = nil
